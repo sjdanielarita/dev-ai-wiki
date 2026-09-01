@@ -26,16 +26,20 @@ def save_json(filepath, data):
     print(f"[{datetime.now(timezone.utc).isoformat()}] ✅ Guardado correctamente: {filepath}")
 
 def get_ai_data(api_key):
-    # System Prompt ordenando actuar como investigador experto con esquema estricto
+    # System Prompt exigiendo el uso de búsqueda web para investigar modelos de 2026
     prompt = """
-Actúa como un investigador técnico experto en Inteligencia Artificial y Desarrollo de Software.
+Actúa como un investigador técnico experto en Inteligencia Artificial y Desarrollo de Software en el año 2026.
 Tu tarea es analizar el estado actual del mercado y devolver un JSON ESTRICTO con la información detallada de los modelos de IA especializados o útiles para desarrollo de software.
 
-REGLAS:
-1. Debes incluir exactamente las 3 versiones más recientes y relevantes de Anthropic, 3 de OpenAI y 3 de Google.
-2. Devuelve EXCLUSIVAMENTE un objeto JSON válido, sin usar sintaxis Markdown (no uses bloques ```json).
-3. Asegúrate de incluir costos realistas actuales por 1M de tokens.
-4. Debes incorporar una sección "history_entry" donde actúas como el agente documentando el proceso investigativo, mencionando fuentes, motivos y cambios detectados.
+REGLAS CRÍTICAS:
+1. DEBES UTILIZAR TU HERRAMIENTA DE BÚSQUEDA WEB (Google Search) integrada para investigar y verificar los lanzamientos más recientes del año 2026.
+2. Investiga y verifica exhaustivamente los IDs de API reales, fechas de lanzamiento y precios actuales (en USD por 1M tokens).
+3. Debes incluir exactamente las 3 versiones más recientes y relevantes orientadas a código de:
+   - Anthropic Claude (ej. familias Claude 5 / Sonnet / Opus / Fable recientes).
+   - OpenAI / ChatGPT (ej. familias GPT-5 / o-series recientes).
+   - Google Gemini (ej. familias Gemini 3.1 / 3.5 recientes).
+4. Devuelve EXCLUSIVAMENTE un objeto JSON válido, sin usar sintaxis Markdown (no uses bloques ```json).
+5. Debes incorporar una sección "history_entry" documentando el proceso investigativo, mencionando fuentes, motivos y cambios detectados.
 
 El esquema exacto que DEBES cumplir es el siguiente:
 {
@@ -56,18 +60,19 @@ El esquema exacto que DEBES cumplir es el siguiente:
     "model_added": "Nombres de los modelos actualizados o analizados",
     "change": "Descripción de los cambios o investigación realizada en la industria",
     "reason": "Justificación de por qué estos modelos son el actual estado del arte para desarrolladores",
-    "sources": ["URL o nombre de la fuente oficial", "Ej: openai.com", "Ej: anthropic.com"]
+    "sources": ["URL o nombre de la fuente oficial encontrada en la búsqueda web", "Ej: openai.com/pricing", "Ej: anthropic.com/api"]
   }
 }
 """
     
     url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={api_key}"
     
-    # Configuración forzando JSON nativo
+    # Configuración habilitando Google Search Grounding y forzando JSON nativo
     payload = {
         "contents": [{
             "parts": [{"text": prompt}]
         }],
+        "tools": [{"googleSearch": {}}],
         "generationConfig": {
             "response_mime_type": "application/json",
             "temperature": 0.2
@@ -107,7 +112,7 @@ El esquema exacto que DEBES cumplir es el siguiente:
         return None
 
 def main():
-    print("Iniciando proceso de IA Autónoma para actualización de Dev AI Wiki...")
+    print("Iniciando proceso de IA Autónoma con Búsqueda Web para actualización de Dev AI Wiki...")
     
     # 1. Leer variable de entorno
     api_key = os.environ.get("AI_API_KEY")
@@ -119,7 +124,7 @@ def main():
     if not history_data:
         history_data = {"history": []}
         
-    print("Enviando directrices de investigación a Gemini 2.5 Flash...")
+    print("Enviando directrices y habilitando Google Search Grounding a Gemini 2.5 Flash...")
     
     # 2, 3, 4. Petición HTTP estructurada
     ai_response = get_ai_data(api_key)
@@ -144,7 +149,7 @@ def main():
         "provider": "IA Autonomous Agent",
         "model_added": ai_history.get("model_added", "Varios"),
         "change": ai_history.get("change", "Revisión automatizada"),
-        "reason": ai_history.get("reason", "Ejecución programada"),
+        "reason": ai_history.get("reason", "Ejecución programada con acceso web"),
         "sources": ai_history.get("sources", [])
     }
     
@@ -155,7 +160,7 @@ def main():
     save_json(MODELS_FILE, final_models_data)
     save_json(HISTORY_FILE, history_data)
     
-    print("🚀 ¡Misión cumplida! Base de datos y registro histórico actualizados por la IA de forma autónoma.")
+    print("🚀 ¡Misión cumplida! Base de datos y registro histórico actualizados por la IA (Grounding Habilitado).")
 
 if __name__ == "__main__":
     main()
