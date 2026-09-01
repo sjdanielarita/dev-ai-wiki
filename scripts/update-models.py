@@ -26,17 +26,18 @@ def save_json(filepath, data):
     print(f"[{datetime.now(timezone.utc).isoformat()}] ✅ Guardado correctamente: {filepath}")
 
 def get_ai_data(api_key):
-    # Prompt estricto pidiendo a la IA que estructure su investigación como JSON
+    # System Prompt ordenando actuar como investigador experto con esquema estricto
     prompt = """
 Actúa como un investigador técnico experto en Inteligencia Artificial y Desarrollo de Software.
-Tu tarea es investigar y devolver un JSON ESTRICTO con la información más reciente y precisa de los modelos de IA especializados o útiles para desarrollo de software.
+Tu tarea es analizar el estado actual del mercado y devolver un JSON ESTRICTO con la información detallada de los modelos de IA especializados o útiles para desarrollo de software.
 
 REGLAS:
-1. Debes incluir exactamente las 3 versiones más recientes/relevantes de Anthropic (ej. familia Claude 3.5, 4), 3 de OpenAI (ej. familia o1, GPT-4o) y 3 de Google (ej. familia Gemini 1.5, 2.0, 3.1).
-2. No uses formato Markdown, ni bloques de código (```json), debes devolver EXCLUSIVAMENTE texto JSON válido que pueda ser parseado directamente.
-3. Los datos de costos ("cost_input_1m" y "cost_output_1m") deben ser flotantes realistas reflejando precio por 1 millón de tokens.
+1. Debes incluir exactamente las 3 versiones más recientes y relevantes de Anthropic, 3 de OpenAI y 3 de Google.
+2. Devuelve EXCLUSIVAMENTE un objeto JSON válido, sin usar sintaxis Markdown (no uses bloques ```json).
+3. Asegúrate de incluir costos realistas actuales por 1M de tokens.
+4. Debes incorporar una sección "history_entry" donde actúas como el agente documentando el proceso investigativo, mencionando fuentes, motivos y cambios detectados.
 
-Estructura requerida:
+El esquema exacto que DEBES cumplir es el siguiente:
 {
   "models": [
     {
@@ -45,32 +46,38 @@ Estructura requerida:
       "api_id": "id-de-api-oficial",
       "reasoning_level": "High" | "Medium" | "Low",
       "tasks": ["coding", "reasoning", "speed"],
-      "strengths": ["Fuerza principal 1", "Fuerza 2"],
+      "strengths": ["Fuerza 1", "Fuerza 2"],
       "limitations": ["Limitación 1", "Limitación 2"],
       "cost_input_1m": 0.00,
       "cost_output_1m": 0.00
     }
-  ]
+  ],
+  "history_entry": {
+    "model_added": "Nombres de los modelos actualizados o analizados",
+    "change": "Descripción de los cambios o investigación realizada en la industria",
+    "reason": "Justificación de por qué estos modelos son el actual estado del arte para desarrolladores",
+    "sources": ["URL o nombre de la fuente oficial", "Ej: openai.com", "Ej: anthropic.com"]
+  }
 }
 """
     
-    # Utilizando la API REST oficial de Google Gemini (v1beta o más reciente)
-    # response_mime_type asegura que el modelo fuerce la salida en formato JSON
     url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={api_key}"
     
+    # Configuración forzando JSON nativo
     payload = {
         "contents": [{
             "parts": [{"text": prompt}]
         }],
         "generationConfig": {
             "response_mime_type": "application/json",
-            "temperature": 0.2 # Baja temperatura para mayor consistencia en JSON y factualidad
+            "temperature": 0.2
         }
     }
     
     data = json.dumps(payload).encode('utf-8')
     req = urllib.request.Request(url, data=data, headers={'Content-Type': 'application/json'}, method='POST')
     
+    # Bloque try-except para fallos de red o de parseo
     try:
         with urllib.request.urlopen(req) as response:
             result = json.loads(response.read().decode('utf-8'))
@@ -81,75 +88,74 @@ Estructura requerida:
                 try:
                     return json.loads(content_text)
                 except json.JSONDecodeError:
-                    print("❌ Error: La respuesta de Gemini no es un JSON válido.")
-                    print("Contenido devuelto:", content_text)
+                    print("❌ Error crítico: La respuesta de la IA no es un JSON válido.")
+                    print("Texto devuelto:\n", content_text)
                     return None
             else:
-                print("❌ Error: Respuesta inesperada de Gemini (sin candidates).")
+                print("❌ Error: Respuesta vacía de Gemini API.")
                 return None
                 
     except urllib.error.HTTPError as e:
-        print(f"❌ Error HTTP de Gemini API ({e.code}): {e.reason}")
+        print(f"❌ Error HTTP al contactar Gemini API ({e.code}): {e.reason}")
         print(e.read().decode('utf-8'))
         return None
+    except urllib.error.URLError as e:
+        print(f"❌ Error de red al intentar contactar la API: {e.reason}")
+        return None
     except Exception as e:
-        print(f"❌ Error inesperado al contactar Gemini API: {str(e)}")
+        print(f"❌ Error inesperado: {str(e)}")
         return None
 
 def main():
-    print("Iniciando proceso de actualización automatizada con Gemini API...")
+    print("Iniciando proceso de IA Autónoma para actualización de Dev AI Wiki...")
     
     # 1. Leer variable de entorno
     api_key = os.environ.get("AI_API_KEY")
     if not api_key:
-        print("❌ Error fatal: La variable de entorno 'AI_API_KEY' no está definida.")
-        print("Por favor, asegúrate de configurarla en los Secrets del repositorio.")
+        print("❌ Error: La variable de entorno 'AI_API_KEY' no está definida.")
         sys.exit(1)
         
     history_data = load_json(HISTORY_FILE)
     if not history_data:
         history_data = {"history": []}
+        
+    print("Enviando directrices de investigación a Gemini 2.5 Flash...")
     
-    print("Consultando a Gemini 2.5 Flash para extraer e investigar modelos actuales...")
+    # 2, 3, 4. Petición HTTP estructurada
+    ai_response = get_ai_data(api_key)
     
-    # 2 & 3 & 4. Enviar prompt, recibir y parsear JSON
-    new_models_data = get_ai_data(api_key)
-    
-    if not new_models_data or "models" not in new_models_data:
-        print("❌ Error: Falló la obtención o validación de los datos. Abortando actualización para no corromper la BD estática.")
+    if not ai_response or "models" not in ai_response or "history_entry" not in ai_response:
+        print("❌ Fallo en la extracción y validación de los datos estructurales. Ejecución finalizada de forma segura.")
         sys.exit(1)
         
     current_time = datetime.now(timezone.utc)
     current_time_iso = current_time.strftime('%Y-%m-%dT%H:%M:%SZ')
     
-    # 5. Sobrescribir data con nueva estructura validada
+    # 5. Fusionar datos y asegurar UTC
     final_models_data = {
         "last_updated": current_time_iso,
-        "models": new_models_data["models"]
+        "models": ai_response["models"]
     }
     
-    # 6. Agregar entrada en el historial
-    current_version = "1.0.0"
-    if history_data.get('history'):
-        current_version = history_data['history'][0].get('version', '1.0.0')
-        
-    version_parts = current_version.split('.')
-    # Al ser actualización automática de base de datos, incrementamos version minor
-    new_version = f"{version_parts[0]}.{int(version_parts[1]) + 1}.0"
-    
+    # 7. Actualizar el archivo de histórico con los campos detallados
+    ai_history = ai_response["history_entry"]
     new_entry = {
         "date": current_time_iso,
-        "version": new_version,
-        "changes": "Actualización inteligente vía Gemini API: Descubrimiento y re-evaluación de los modelos de IA, fortalezas, y tarifas de uso."
+        "provider": "IA Autonomous Agent",
+        "model_added": ai_history.get("model_added", "Varios"),
+        "change": ai_history.get("change", "Revisión automatizada"),
+        "reason": ai_history.get("reason", "Ejecución programada"),
+        "sources": ai_history.get("sources", [])
     }
     
+    # Insertar al principio de la lista
     history_data.setdefault('history', []).insert(0, new_entry)
     
-    # Guardado seguro
+    # 6. Guardar cambios
     save_json(MODELS_FILE, final_models_data)
     save_json(HISTORY_FILE, history_data)
     
-    print("🚀 Base de datos de modelos actualizada con éxito vía IA.")
+    print("🚀 ¡Misión cumplida! Base de datos y registro histórico actualizados por la IA de forma autónoma.")
 
 if __name__ == "__main__":
     main()
