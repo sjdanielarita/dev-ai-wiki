@@ -1,6 +1,11 @@
 {
   "history": [
     {
+      "date": "2026-09-01T21:46:14Z",
+      "version": "1.2.0",
+      "changes": "Actualización inteligente vía Gemini API: Descubrimiento y re-evaluación de los modelos de IA, fortalezas, y tarifas de uso."
+    },
+    {
       "date": "2026-09-01T21:42:07Z",
       "version": "1.1.0",
       "changes": "Actualización inteligente vía Gemini API: Descubrimiento y re-evaluación de los modelos de IA, fortalezas, y tarifas de uso."

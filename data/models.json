@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-01T21:42:07Z",
+  "last_updated": "2026-09-01T21:46:14Z",
   "models": [
     {
       "name": "Claude 3.5 Sonnet",
@@ -9,18 +9,22 @@
       "tasks": [
         "coding",
         "reasoning",
-        "code generation",
-        "debugging",
-        "refactoring"
+        "refactoring",
+        "testing",
+        "documentation",
+        "code review"
       ],
       "strengths": [
-        "Superior code generation and debugging",
-        "Enhanced reasoning over previous Sonnet",
-        "Cost-effective for complex tasks"
+        "Superior code generation",
+        "Enhanced reasoning over Claude 3 Opus",
+        "Faster execution than Opus",
+        "Strong multimodal capabilities",
+        "Cost-effective for its performance"
       ],
       "limitations": [
         "Context window smaller than Opus",
-        "May still hallucinate in highly complex, niche scenarios"
+        "Still can hallucinate",
+        "Less raw intelligence than Opus for extremely complex, niche tasks"
       ],
       "cost_input_1m": 3.0,
       "cost_output_1m": 15.0
@@ -34,17 +38,19 @@
         "coding",
         "reasoning",
         "complex problem solving",
-        "system design",
+        "architecture design",
         "code review"
       ],
       "strengths": [
-        "Highest reasoning capabilities",
-        "Large context window for extensive codebases",
-        "Strong performance on challenging coding benchmarks"
+        "Highest intelligence for complex tasks",
+        "Exceptional reasoning abilities",
+        "Large context window",
+        "Strong performance on benchmarks"
       ],
       "limitations": [
-        "Higher cost compared to Sonnet",
-        "Slower inference speed than Sonnet"
+        "Higher cost than Sonnet/Haiku",
+        "Slower inference compared to Sonnet/Haiku",
+        "Can be overkill for simpler tasks"
       ],
       "cost_input_1m": 15.0,
       "cost_output_1m": 75.0
@@ -57,18 +63,20 @@
       "tasks": [
         "coding",
         "speed",
-        "simple script generation",
+        "simple scripting",
         "data extraction",
-        "quick responses"
+        "documentation generation"
       ],
       "strengths": [
         "Extremely fast inference",
-        "Very low cost",
-        "Good for quick, straightforward coding tasks"
+        "Very cost-effective",
+        "Good for high-volume, less complex tasks",
+        "Responsive"
       ],
       "limitations": [
-        "Lower reasoning ability than Sonnet/Opus",
-        "Less suitable for highly complex or abstract problems"
+        "Lower reasoning capabilities than Opus/Sonnet",
+        "Less suitable for complex architectural decisions",
+        "Can struggle with highly nuanced coding problems"
       ],
       "cost_input_1m": 0.25,
       "cost_output_1m": 1.25
@@ -76,74 +84,82 @@
     {
       "name": "GPT-4o",
       "provider": "OpenAI",
-      "api_id": "gpt-4o",
+      "api_id": "gpt-4o-2024-05-13",
       "reasoning_level": "High",
       "tasks": [
         "coding",
         "reasoning",
-        "multimodal input/output",
-        "code generation",
-        "debugging"
+        "multimodal analysis",
+        "code review",
+        "refactoring",
+        "testing"
       ],
       "strengths": [
-        "Excellent reasoning across modalities",
-        "High performance on coding tasks",
-        "Faster and cheaper than GPT-4 Turbo"
+        "State-of-the-art performance across modalities",
+        "Faster and cheaper than GPT-4 Turbo",
+        "Excellent reasoning and code generation",
+        "Strong multimodal capabilities (vision, audio)"
       ],
       "limitations": [
+        "Can still hallucinate",
         "Context window smaller than some competitors",
-        "Can still exhibit 'laziness' in long outputs"
+        "Performance can vary with complex prompts"
       ],
       "cost_input_1m": 5.0,
       "cost_output_1m": 15.0
     },
     {
-      "name": "GPT-4 Turbo",
+      "name": "GPT-4o mini",
       "provider": "OpenAI",
-      "api_id": "gpt-4-turbo",
-      "reasoning_level": "High",
-      "tasks": [
-        "coding",
-        "reasoning",
-        "code review",
-        "system design",
-        "vision-based code analysis"
-      ],
-      "strengths": [
-        "Strong general reasoning and coding ability",
-        "Large context window",
-        "Multimodal capabilities (vision)"
-      ],
-      "limitations": [
-        "Higher cost than GPT-4o",
-        "Slightly slower inference than GPT-4o"
-      ],
-      "cost_input_1m": 10.0,
-      "cost_output_1m": 30.0
-    },
-    {
-      "name": "GPT-3.5 Turbo",
-      "provider": "OpenAI",
-      "api_id": "gpt-3.5-turbo",
+      "api_id": "gpt-4o-mini-2024-07-18",
       "reasoning_level": "Medium",
       "tasks": [
         "coding",
         "speed",
-        "script generation",
-        "data parsing",
+        "simple scripting",
+        "data extraction",
+        "documentation generation",
         "quick prototyping"
       ],
       "strengths": [
-        "Very low cost",
-        "High speed for simple tasks",
-        "Good for boilerplate code and quick fixes"
+        "Extremely cost-effective",
+        "Fast inference",
+        "Good for high-volume, less complex tasks",
+        "Multimodal capabilities at a low price"
       ],
       "limitations": [
-        "Lower reasoning ability than GPT-4 models",
-        "Prone to more errors in complex coding scenarios"
+        "Lower reasoning capabilities than GPT-4o",
+        "Less suitable for highly complex or nuanced coding problems",
+        "Can be less robust for critical tasks"
       ],
-      "cost_input_1m": 0.5,
-      "cost_output_1m": 1.5
+      "cost_input_1m": 0.15,
+      "cost_output_1m": 0.6
+    },
+    {
+      "name": "GPT-4 Turbo",
+      "provider": "OpenAI",
+      "api_id": "gpt-4-turbo-2024-04-09",
+      "reasoning_level": "High",
+      "tasks": [
+        "coding",
+        "reasoning",
+        "complex problem solving",
+        "large context processing",
+        "code review"
+      ],
+      "strengths": [
+        "Large context window (128k tokens)",
+        "Strong reasoning and code generation",
+        "Good for complex, multi-file projects",
+        "Reliable performance"
+      ],
+      "limitations": [
+        "More expensive than GPT-4o",
+        "Slower inference compared to GPT-4o",
+        "Less efficient for simple tasks"
+      ],
+      "cost_input_1m": 10.0,
+      "cost_output_1m": 30.0
     },
     {
       "name": "Gemini 1.5 Pro",
@@ -154,20 +170,50 @@
         "coding",
         "reasoning",
         "large codebase analysis",
-        "multimodal input",
-        "long context understanding"
+        "multimodal analysis",
+        "code review",
+        "refactoring"
       ],
       "strengths": [
         "Massive context window (up to 1M tokens)",
+        "Strong multimodal reasoning",
         "Excellent for analyzing large codebases and documentation",
-        "Strong multimodal capabilities"
+        "Good for complex problem-solving"
       ],
       "limitations": [
         "Higher latency for very large contexts",
-        "Cost scales significantly with 1M token context usage"
+        "Can be more expensive for high-volume usage",
+        "Performance can vary with extremely long prompts"
       ],
-      "cost_input_1m": 35.0,
-      "cost_output_1m": 105.0
+      "cost_input_1m": 3.5,
+      "cost_output_1m": 10.5
+    },
+    {
+      "name": "Gemini 1.5 Flash",
+      "provider": "Google",
+      "api_id": "gemini-1.5-flash-latest",
+      "reasoning_level": "Medium",
+      "tasks": [
+        "coding",
+        "speed",
+        "simple scripting",
+        "data extraction",
+        "documentation generation",
+        "quick prototyping"
+      ],
+      "strengths": [
+        "Extremely fast inference",
+        "Very cost-effective",
+        "Large context window (up to 1M tokens)",
+        "Good for high-volume, less complex tasks"
+      ],
+      "limitations": [
+        "Lower reasoning capabilities than 1.5 Pro",
+        "Less suitable for highly complex architectural decisions",
+        "Can struggle with highly nuanced coding problems"
+      ],
+      "cost_input_1m": 0.35,
+      "cost_output_1m": 1.05
     },
     {
       "name": "Gemini 1.0 Pro",
@@ -177,43 +223,23 @@
       "tasks": [
         "coding",
         "reasoning",
-        "general development tasks",
-        "scripting"
+        "general purpose tasks",
+        "scripting",
+        "documentation"
       ],
       "strengths": [
-        "Good general-purpose performance",
+        "Good general-purpose model",
         "Cost-effective for many tasks",
-        "Reliable for standard coding challenges"
+        "Reliable performance for moderate complexity",
+        "Widely available"
       ],
       "limitations": [
-        "Smaller context window than 1.5 Pro",
-        "Less advanced reasoning than 1.5 Pro"
+        "Smaller context window than 1.5 Pro/Flash",
+        "Lower reasoning capabilities compared to 1.5 Pro",
+        "Can be outperformed by newer models for complex coding"
       ],
       "cost_input_1m": 0.5,
       "cost_output_1m": 1.5
-    },
-    {
-      "name": "CodeGemma",
-      "provider": "Google",
-      "api_id": "codegemma-7b-it",
-      "reasoning_level": "Medium",
-      "tasks": [
-        "coding",
-        "code generation",
-        "code completion",
-        "fill-in-the-middle"
-      ],
-      "strengths": [
-        "Highly specialized for code tasks",
-        "Efficient for code generation and completion",
-        "Open-source weights available for local deployment/fine-tuning"
-      ],
-      "limitations": [
-        "Lower general reasoning compared to larger models",
-        "Primarily focused on code, less on broader problem-solving"
-      ],
-      "cost_input_1m": 0.2,
-      "cost_output_1m": 0.2
     }
   ]
 }
