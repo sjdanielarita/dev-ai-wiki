@@ -20,7 +20,10 @@ jobs:
         with:
           python-version: '3.10'
           
-      - name: Ejecutar script de actualización de modelos
+      - name: Ejecutar script de actualización de modelos inteligente
+        env:
+          # Pasamos la variable de entorno almacenada en los secrets del repositorio
+          AI_API_KEY: ${{ secrets.AI_API_KEY }}
         run: python scripts/update-models.py
         
       - name: Hacer commit y push de los cambios
@@ -28,6 +31,5 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add data/models.json data/history.json
-          # Si no hay cambios, el commit fallará, usamos || true para evitar que el workflow se rompa
-          git commit -m "chore(data): actualización automatizada de modelos [skip ci]" || echo "No hay cambios para commitear"
+          git commit -m "chore(data): actualización inteligente de modelos vía Gemini API [skip ci]" || echo "No hay cambios para commitear"
           git push
