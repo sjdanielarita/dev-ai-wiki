@@ -1,222 +1,220 @@
 {
-  "last_updated": "2026-09-01T21:52:32Z",
+  "last_updated": "2026-09-01T22:06:49Z",
   "models": [
     {
-      "name": "Claude 3.5 Sonnet",
+      "name": "Claude Fable 5.1",
       "provider": "Anthropic",
-      "api_id": "claude-3-5-sonnet-20240620",
+      "api_id": "claude-fable-5-1",
       "reasoning_level": "High",
       "tasks": [
         "coding",
         "reasoning",
-        "refactoring",
-        "documentation"
+        "agentic workflows",
+        "knowledge work"
       ],
       "strengths": [
-        "Balance de inteligencia y velocidad",
-        "Coste-efectividad mejorada",
-        "Fuerte para tareas de codificación complejas",
-        "Ventana de contexto amplia"
+        "Más avanzado para codificación y trabajo de conocimiento",
+        "Rendimiento dramáticamente mejor que Fable 5 con costos más bajos",
+        "Capaz de corregir las causas raíz de los problemas de software",
+        "Cumple con la Ley de IA de la UE, incluye marcas de agua"
       ],
       "limitations": [
-        "No tan potente como Opus para razonamiento extremadamente complejo",
-        "Puede ser superado en velocidad por modelos más pequeños en tareas simples"
-      ],
-      "cost_input_1m": 3.0,
-      "cost_output_1m": 15.0
-    },
-    {
-      "name": "Claude 3 Opus",
-      "provider": "Anthropic",
-      "api_id": "claude-3-opus-20240229",
-      "reasoning_level": "High",
-      "tasks": [
-        "reasoning",
-        "architectural_design",
-        "complex_coding",
-        "strategic_planning"
-      ],
-      "strengths": [
-        "Máximo nivel de inteligencia y razonamiento",
-        "Capacidad para resolver problemas altamente complejos",
-        "Excelente para diseño de sistemas y arquitectura de software",
-        "Gran ventana de contexto"
-      ],
-      "limitations": [
-        "Alto coste de inferencia",
-        "Velocidad de respuesta más lenta en comparación con Sonnet o Haiku"
-      ],
-      "cost_input_1m": 15.0,
-      "cost_output_1m": 75.0
-    },
-    {
-      "name": "Claude 3 Haiku",
-      "provider": "Anthropic",
-      "api_id": "claude-3-haiku-20240307",
-      "reasoning_level": "Medium",
-      "tasks": [
-        "speed",
-        "simple_coding",
-        "summarization",
-        "data_extraction"
-      ],
-      "strengths": [
-        "Extremadamente rápido",
-        "Muy bajo coste",
-        "Ideal para tareas de codificación rápidas y sencillas",
-        "Buena capacidad para procesamiento de datos en tiempo real"
-      ],
-      "limitations": [
-        "Menor capacidad de razonamiento para problemas complejos",
-        "Puede requerir más iteraciones para tareas de codificación sofisticadas"
-      ],
-      "cost_input_1m": 0.25,
-      "cost_output_1m": 1.25
-    },
-    {
-      "name": "GPT-4o",
-      "provider": "OpenAI",
-      "api_id": "gpt-4o",
-      "reasoning_level": "High",
-      "tasks": [
-        "coding",
-        "reasoning",
-        "multimodal_input",
-        "code_review"
-      ],
-      "strengths": [
-        "Capacidades multimodales avanzadas",
-        "Razonamiento de alto nivel",
-        "Excelente para generación y revisión de código",
-        "Buena velocidad y coste-efectividad para su rendimiento"
-      ],
-      "limitations": [
-        "Ventana de contexto no tan grande como Gemini 1.5 Pro",
-        "Potencial de alucinaciones en casos complejos"
-      ],
-      "cost_input_1m": 5.0,
-      "cost_output_1m": 15.0
-    },
-    {
-      "name": "GPT-4o mini",
-      "provider": "OpenAI",
-      "api_id": "gpt-4o-mini",
-      "reasoning_level": "Medium",
-      "tasks": [
-        "simple_coding",
-        "data_processing",
-        "quick_tasks",
-        "scripting"
-      ],
-      "strengths": [
-        "Extremadamente coste-efectivo",
-        "Buena velocidad",
-        "Adecuado para tareas de codificación y procesamiento de datos de menor complejidad",
-        "Ideal para aplicaciones con restricciones de presupuesto"
-      ],
-      "limitations": [
-        "Menor capacidad de razonamiento para problemas complejos",
-        "Ventana de contexto más limitada que GPT-4o o GPT-4 Turbo"
-      ],
-      "cost_input_1m": 0.15,
-      "cost_output_1m": 0.6
-    },
-    {
-      "name": "GPT-4 Turbo",
-      "provider": "OpenAI",
-      "api_id": "gpt-4-turbo",
-      "reasoning_level": "High",
-      "tasks": [
-        "coding",
-        "reasoning",
-        "large_context_processing",
-        "complex_problem_solving"
-      ],
-      "strengths": [
-        "Rendimiento probado y fiable",
-        "Gran ventana de contexto (128K tokens)",
-        "Fuerte capacidad de razonamiento y codificación",
-        "Amplia adopción en la industria"
-      ],
-      "limitations": [
-        "Mayor coste que GPT-4o para un rendimiento a veces comparable",
-        "No tan rápido como GPT-4o en ciertas operaciones"
+        "Precio premium en comparación con otros modelos",
+        "Mythos 5.1 (el mismo modelo sin salvaguardias) solo disponible para socios verificados"
       ],
       "cost_input_1m": 10.0,
+      "cost_output_1m": 50.0
+    },
+    {
+      "name": "Claude Opus 5",
+      "provider": "Anthropic",
+      "api_id": "claude-opus-5",
+      "reasoning_level": "High",
+      "tasks": [
+        "coding",
+        "reasoning",
+        "software engineering",
+        "problem-solving"
+      ],
+      "strengths": [
+        "Modelo reflexivo y proactivo, cercano a la inteligencia de Fable 5 a mitad de precio",
+        "Destaca en tareas de ingeniería de software",
+        "Supera a otros modelos en Frontier-Bench v0.1 y CursorBench 3.2",
+        "Supera a todos los demás modelos en OSWorld 2.0 a cualquier costo dado"
+      ],
+      "limitations": [
+        "Puede requerir ajuste del parámetro 'effort' para optimizar costos",
+        "No incluido en el nivel gratuito de Claude"
+      ],
+      "cost_input_1m": 5.0,
+      "cost_output_1m": 25.0
+    },
+    {
+      "name": "Claude Sonnet 5",
+      "provider": "Anthropic",
+      "api_id": "claude-sonnet-5",
+      "reasoning_level": "Medium",
+      "tasks": [
+        "coding",
+        "production workloads",
+        "speed",
+        "cost-efficiency"
+      ],
+      "strengths": [
+        "Nivel de producción equilibrado",
+        "Fuerte rendimiento de nivel medio a menor costo",
+        "Buena opción para cargas de trabajo de producción"
+      ],
+      "limitations": [
+        "Menos capaz que Opus 5 o Fable 5.1 para tareas de razonamiento complejas",
+        "Contexto de 1M de tokens disponible, pero puede no ser el más eficiente para todos los casos"
+      ],
+      "cost_input_1m": 2.0,
+      "cost_output_1m": 10.0
+    },
+    {
+      "name": "GPT-5.6 Sol",
+      "provider": "OpenAI",
+      "api_id": "gpt-5.6-sol",
+      "reasoning_level": "High",
+      "tasks": [
+        "coding",
+        "reasoning",
+        "research",
+        "cybersecurity",
+        "design"
+      ],
+      "strengths": [
+        "Modelo insignia de razonamiento para trabajo complejo en codificación",
+        "Lidera los benchmarks de codificación de OpenAI, incluyendo Terminal-Bench 2.1 y Artificial Analysis Coding Agent Index",
+        "Mayor inteligencia por cada token y mayor rendimiento por dólar",
+        "Ventana de contexto de 1.05M de tokens"
+      ],
+      "limitations": [
+        "Precio más alto dentro de la familia GPT-5.6",
+        "No disponible para usuarios gratuitos o con planes básicos de ChatGPT"
+      ],
+      "cost_input_1m": 5.0,
       "cost_output_1m": 30.0
     },
     {
-      "name": "Gemini 1.5 Pro",
-      "provider": "Google",
-      "api_id": "gemini-1.5-pro-latest",
-      "reasoning_level": "High",
-      "tasks": [
-        "large_codebase_analysis",
-        "multimodal_input",
-        "complex_reasoning",
-        "long_context_processing"
-      ],
-      "strengths": [
-        "Ventana de contexto masiva (1M tokens)",
-        "Excelente para análisis de grandes bases de código",
-        "Capacidades multimodales robustas",
-        "Fuerte para tareas de razonamiento complejas"
-      ],
-      "limitations": [
-        "Mayor coste para el uso de la ventana de contexto completa",
-        "Puede ser más lento con entradas extremadamente grandes"
-      ],
-      "cost_input_1m": 7.0,
-      "cost_output_1m": 21.0
-    },
-    {
-      "name": "Gemini 1.5 Flash",
-      "provider": "Google",
-      "api_id": "gemini-1.5-flash-latest",
+      "name": "GPT-5.6 Terra",
+      "provider": "OpenAI",
+      "api_id": "gpt-5.6-terra",
       "reasoning_level": "Medium",
       "tasks": [
-        "speed",
-        "cost_effective_coding",
-        "large_context_processing",
-        "quick_refactoring"
+        "coding",
+        "everyday production",
+        "efficiency"
       ],
       "strengths": [
-        "Muy rápido y coste-efectivo",
-        "Gran ventana de contexto (1M tokens)",
-        "Ideal para tareas de codificación y refactorización rápidas",
-        "Eficiente para aplicaciones de alto rendimiento"
+        "Modelo equilibrado para el uso diario",
+        "Eficiencia que supera su precio",
+        "Parte de la familia GPT-5.6, con mejoras en eficiencia",
+        "Ventana de contexto de 1.05M de tokens"
       ],
       "limitations": [
-        "Menor capacidad de razonamiento que 1.5 Pro",
-        "Puede requerir más fine-tuning para tareas muy específicas"
+        "Menos capaz que Sol para las tareas más complejas",
+        "Puede no ser la opción más económica para tareas de alto volumen"
       ],
-      "cost_input_1m": 0.7,
-      "cost_output_1m": 2.1
+      "cost_input_1m": 2.0,
+      "cost_output_1m": 12.0
     },
     {
-      "name": "CodeGemma",
-      "provider": "Google",
-      "api_id": "codegemma-7b-it",
+      "name": "GPT-5.6 Luna",
+      "provider": "OpenAI",
+      "api_id": "gpt-5.6-luna",
       "reasoning_level": "Low",
       "tasks": [
         "coding",
-        "code_generation",
-        "code_completion",
-        "fine_tuning"
+        "high-volume",
+        "latency-sensitive tasks",
+        "cost-efficiency"
       ],
       "strengths": [
-        "Especializado en codificación",
-        "Muy eficiente para su tamaño",
-        "Ideal para generación y completado de código",
-        "Opciones de despliegue en local o en Vertex AI"
+        "Nivel más rentable de la familia GPT-5.6",
+        "Ideal para tareas de alto volumen o sensibles a la latencia",
+        "Precios significativamente reducidos en comparación con otros modelos",
+        "Ventana de contexto de 1.05M de tokens"
       ],
       "limitations": [
-        "Menor capacidad de razonamiento general",
-        "Requiere más ingeniería de prompts para tareas no relacionadas con código",
-        "Tamaño de contexto más limitado"
+        "Menor capacidad de razonamiento en comparación con Sol y Terra",
+        "Puede no ser adecuado para problemas de codificación extremadamente complejos"
       ],
-      "cost_input_1m": 0.25,
-      "cost_output_1m": 0.25
+      "cost_input_1m": 0.2,
+      "cost_output_1m": 1.2
+    },
+    {
+      "name": "Gemini 3.7 Flash",
+      "provider": "Google",
+      "api_id": "gemini-3.7-flash",
+      "reasoning_level": "High",
+      "tasks": [
+        "coding",
+        "agentic workflows",
+        "software engineering",
+        "web development"
+      ],
+      "strengths": [
+        "Modelo 'caballo de batalla' más inteligente para codificación y agentes",
+        "Mejoras sustanciales en ingeniería de software, desarrollo web y flujos de trabajo de agentes",
+        "Mayor precisión de código en el primer intento y mejor rendimiento en código listo para producción",
+        "Precios introductorios competitivos"
+      ],
+      "limitations": [
+        "El precio introductorio se duplica el 1 de enero de 2027",
+        "El acceso al consumidor a través de la aplicación Gemini requiere una suscripción Pro o Ultra"
+      ],
+      "cost_input_1m": 0.75,
+      "cost_output_1m": 3.75
+    },
+    {
+      "name": "Gemini 3.6 Flash",
+      "provider": "Google",
+      "api_id": "gemini-3.6-flash",
+      "reasoning_level": "Medium",
+      "tasks": [
+        "coding",
+        "agentic planning",
+        "token efficiency",
+        "speed"
+      ],
+      "strengths": [
+        "Eficiencia de tokens mejorada y capacidades de planificación de código/agentes",
+        "Modelo enfocado en la velocidad",
+        "Precios introductorios competitivos, igualados a 3.7 Flash",
+        "Modelo predeterminado gratuito en la aplicación Gemini y en el modo AI de Google Search"
+      ],
+      "limitations": [
+        "El precio introductorio se duplica el 1 de enero de 2027",
+        "Superado por 3.7 Flash en benchmarks de codificación y agentes"
+      ],
+      "cost_input_1m": 0.75,
+      "cost_output_1m": 3.75
+    },
+    {
+      "name": "Gemini 3.1 Pro",
+      "provider": "Google",
+      "api_id": "gemini-3.1-pro",
+      "reasoning_level": "High",
+      "tasks": [
+        "reasoning",
+        "multimodal",
+        "large context",
+        "complex problem-solving"
+      ],
+      "strengths": [
+        "Ofrenda más capaz de Google",
+        "Capacidades multimodales superiores y ventana de contexto de 2 millones de tokens",
+        "Excelente para tareas de razonamiento complejas en grandes conjuntos de datos",
+        "Posicionado competitivamente contra GPT-4o y Claude 3.5 Sonnet"
+      ],
+      "limitations": [
+        "Tarifas más altas para contextos superiores a 200K tokens",
+        "No tan optimizado para velocidad pura como los modelos Flash"
+      ],
+      "cost_input_1m": 2.0,
+      "cost_output_1m": 12.0
     }
   ]
 }
