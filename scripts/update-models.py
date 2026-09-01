@@ -2,6 +2,7 @@
 import json
 import os
 import sys
+import re
 import urllib.request
 import urllib.error
 from datetime import datetime, timezone
@@ -25,8 +26,33 @@ def save_json(filepath, data):
         json.dump(data, file, indent=2, ensure_ascii=False)
     print(f"[{datetime.now(timezone.utc).isoformat()}] ✅ Guardado correctamente: {filepath}")
 
+def extract_json(text):
+    """
+    Función de extracción segura usando expresiones regulares para capturar JSON 
+    dentro de bloques Markdown, con un fallback a búsqueda por llaves.
+    """
+    # Intentar extraer desde un bloque markdown de código JSON
+    match = re.search(r'```(?:json)?\s*(.*?)\s*```', text, re.DOTALL | re.IGNORECASE)
+    if match:
+        json_str = match.group(1)
+    else:
+        # Fallback: capturar desde el primer '{' hasta el último '}'
+        start_idx = text.find('{')
+        end_idx = text.rfind('}')
+        if start_idx != -1 and end_idx != -1:
+            json_str = text[start_idx:end_idx+1]
+        else:
+            json_str = text
+            
+    try:
+        return json.loads(json_str)
+    except json.JSONDecodeError as e:
+        print(f"❌ Error de parsing JSON: {str(e)}")
+        print("Texto que se intentó parsear:\n", json_str)
+        return None
+
 def get_ai_data(api_key):
-    # System Prompt exigiendo el uso de búsqueda web para investigar modelos de 2026
+    # System Prompt exigiendo el uso de búsqueda web para investigar modelos de 2026 y JSON en Markdown
     prompt = """
 Actúa como un investigador técnico experto en Inteligencia Artificial y Desarrollo de Software en el año 2026.
 Tu tarea es analizar el estado actual del mercado y devolver un JSON ESTRICTO con la información detallada de los modelos de IA especializados o útiles para desarrollo de software.
@@ -38,10 +64,11 @@ REGLAS CRÍTICAS:
    - Anthropic Claude (ej. familias Claude 5 / Sonnet / Opus / Fable recientes).
    - OpenAI / ChatGPT (ej. familias GPT-5 / o-series recientes).
    - Google Gemini (ej. familias Gemini 3.1 / 3.5 recientes).
-4. Devuelve EXCLUSIVAMENTE un objeto JSON válido, sin usar sintaxis Markdown (no uses bloques ```json).
+4. Devuelve tu respuesta EXCLUSIVAMENTE dentro de un bloque de código Markdown JSON (```json ... ```). No incluyas explicaciones antes o después.
 5. Debes incorporar una sección "history_entry" documentando el proceso investigativo, mencionando fuentes, motivos y cambios detectados.
 
 El esquema exacto que DEBES cumplir es el siguiente:
+```json
 {
   "models": [
     {
@@ -63,18 +90,18 @@ El esquema exacto que DEBES cumplir es el siguiente:
     "sources": ["URL o nombre de la fuente oficial encontrada en la búsqueda web", "Ej: openai.com/pricing", "Ej: anthropic.com/api"]
   }
 }
+```
 """
     
     url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={api_key}"
     
-    # Configuración habilitando Google Search Grounding y forzando JSON nativo
+    # Configuración habilitando Google Search Grounding (SIN response_mime_type)
     payload = {
         "contents": [{
             "parts": [{"text": prompt}]
         }],
         "tools": [{"googleSearch": {}}],
         "generationConfig": {
-            "response_mime_type": "application/json",
             "temperature": 0.2
         }
     }
@@ -90,11 +117,13 @@ El esquema exacto que DEBES cumplir es el siguiente:
             if 'candidates' in result and len(result['candidates']) > 0:
                 content_text = result['candidates'][0]['content']['parts'][0]['text']
                 
-                try:
-                    return json.loads(content_text)
-                except json.JSONDecodeError:
-                    print("❌ Error crítico: La respuesta de la IA no es un JSON válido.")
-                    print("Texto devuelto:\n", content_text)
+                # Extracción y decodificación segura del JSON
+                parsed_json = extract_json(content_text)
+                if parsed_json:
+                    return parsed_json
+                else:
+                    print("❌ Error crítico: No se pudo extraer o decodificar el JSON de la respuesta de la IA.")
+                    print("Respuesta original:\n", content_text)
                     return None
             else:
                 print("❌ Error: Respuesta vacía de Gemini API.")
@@ -126,7 +155,7 @@ def main():
         
     print("Enviando directrices y habilitando Google Search Grounding a Gemini 2.5 Flash...")
     
-    # 2, 3, 4. Petición HTTP estructurada
+    # 2, 3, 4. Petición HTTP estructurada y procesada
     ai_response = get_ai_data(api_key)
     
     if not ai_response or "models" not in ai_response or "history_entry" not in ai_response:
@@ -160,7 +189,7 @@ def main():
     save_json(MODELS_FILE, final_models_data)
     save_json(HISTORY_FILE, history_data)
     
-    print("🚀 ¡Misión cumplida! Base de datos y registro histórico actualizados por la IA (Grounding Habilitado).")
+    print("🚀 ¡Misión cumplida! Base de datos y registro histórico actualizados por la IA (Grounding Habilitado, Extractor Activo).")
 
 if __name__ == "__main__":
     main()
