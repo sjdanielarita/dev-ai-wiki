@@ -96,10 +96,27 @@ document.addEventListener('DOMContentLoaded', () => {
         
         history.slice(0, 10).forEach(entry => {
             const li = document.createElement('li');
-            li.innerHTML = `
-                <div class="history-date">${new Date(entry.date).toLocaleString()}</div>
-                <strong>Versión ${entry.version}:</strong> ${entry.changes}
-            `;
+            
+            // Verificamos si es un log generado por la IA (nuevo formato)
+            if (entry.provider === "IA Autonomous Agent") {
+                const sourcesHtml = entry.sources && entry.sources.length 
+                    ? `<div style="font-size: 0.75rem; color: var(--primary-color); margin-top: 5px;">Fuentes: ${entry.sources.join(', ')}</div>` 
+                    : '';
+                    
+                li.innerHTML = `
+                    <div class="history-date">${new Date(entry.date).toLocaleString()} 🤖 Auto-Update</div>
+                    <strong>Cambios:</strong> ${entry.change}<br>
+                    <span style="font-size: 0.85rem; color: #94a3b8;"><strong>Motivo:</strong> ${entry.reason}</span>
+                    ${sourcesHtml}
+                `;
+            } else {
+                // Formato clásico original
+                li.innerHTML = `
+                    <div class="history-date">${new Date(entry.date).toLocaleString()}</div>
+                    <strong>Versión ${entry.version || '1.0.0'}:</strong> ${entry.changes || entry.change || 'Actualización general'}
+                `;
+            }
+            
             list.appendChild(li);
         });
     }
