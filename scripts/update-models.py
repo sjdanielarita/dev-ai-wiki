@@ -147,7 +147,7 @@ El esquema exacto que DEBES cumplir es el siguiente:
     }
     
     data = json.dumps(payload).encode('utf-8')
-    MODELS_TO_TRY = ["gemini-3.7-flash", "gemini-3.1-pro-preview"]
+    MODELS_TO_TRY = ["gemini-3.6-flash", "gemini-3.1-pro-preview", "gemini-2.0-flash"]
     
     for model_name in MODELS_TO_TRY:
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={api_key}"
