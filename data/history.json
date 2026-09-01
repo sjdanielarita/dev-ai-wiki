@@ -1,0 +1,9 @@
+{
+  "history": [
+    {
+      "date": "2026-09-01T12:00:00Z",
+      "version": "1.0.0",
+      "changes": "Lanzamiento inicial de Dev AI Wiki. Integración de la última generación de modelos (incluyendo Gemini 3.1 Pro, o1-preview y Claude 4)."
+    }
+  ]
+}

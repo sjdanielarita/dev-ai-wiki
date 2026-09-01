@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev AI Wiki - Modelos de IA para Desarrollo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Dev AI Wiki</h1>
+            <p>Directorio actualizado de modelos de IA para desarrollo de software</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="filters">
+            <h2>Filtros</h2>
+            <div class="filter-group">
+                <label for="task-filter">Tarea principal:</label>
+                <select id="task-filter">
+                    <option value="all">Todas</option>
+                    <option value="coding">Generación de Código</option>
+                    <option value="reasoning">Razonamiento Complejo</option>
+                    <option value="speed">Alta Velocidad / Baja Latencia</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="reasoning-filter">Nivel de Razonamiento:</label>
+                <select id="reasoning-filter">
+                    <option value="all">Todos</option>
+                    <option value="High">Alto (High)</option>
+                    <option value="Medium">Medio (Medium)</option>
+                    <option value="Low">Bajo (Low)</option>
+                </select>
+            </div>
+        </section>
+
+        <section class="models-grid" id="models-grid">
+            <div class="provider-column" id="anthropic-column">
+                <h2 class="provider-title">Anthropic</h2>
+                <div class="cards-container"></div>
+            </div>
+            <div class="provider-column" id="openai-column">
+                <h2 class="provider-title">OpenAI</h2>
+                <div class="cards-container"></div>
+            </div>
+            <div class="provider-column" id="google-column">
+                <h2 class="provider-title">Google</h2>
+                <div class="cards-container"></div>
+            </div>
+        </section>
+
+        <section class="comparative-table-section">
+            <h2>Tabla Comparativa</h2>
+            <div class="table-responsive">
+                <table id="comparative-table">
+                    <thead>
+                        <tr>
+                            <th>Modelo</th>
+                            <th>Proveedor</th>
+                            <th>Nivel</th>
+                            <th>Costo (Input/Output por 1M)</th>
+                            <th>Ventaja Principal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Poblado por JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="history-section">
+            <h2>Histórico de Actualizaciones</h2>
+            <ul id="history-list">
+                <!-- Poblado por JS -->
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Generado automáticamente. Las actualizaciones se procesan vía GitHub Actions.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

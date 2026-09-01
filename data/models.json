@@ -1,0 +1,104 @@
+{
+  "last_updated": "2026-09-01T12:00:00Z",
+  "models": [
+    {
+      "name": "Claude 4 Opus",
+      "provider": "Anthropic",
+      "api_id": "claude-4-opus-20251020",
+      "reasoning_level": "High",
+      "tasks": ["reasoning", "coding"],
+      "strengths": ["Razonamiento lógico excepcional", "Arquitecturas de sistemas complejos", "Análisis de bases de código enteras"],
+      "limitations": ["Costo premium", "Mayor latencia en respuestas iniciales"],
+      "cost_input_1m": 15.00,
+      "cost_output_1m": 75.00
+    },
+    {
+      "name": "Claude 4 Sonnet",
+      "provider": "Anthropic",
+      "api_id": "claude-4-sonnet-20250620",
+      "reasoning_level": "High",
+      "tasks": ["coding", "reasoning"],
+      "strengths": ["Gran balance de velocidad y calidad de código", "Excelente seguimiento de instrucciones", "Refactorizaciones seguras"],
+      "limitations": ["Menos profundo que Opus en problemas abstractos", "Límites de rate más estrictos"],
+      "cost_input_1m": 3.00,
+      "cost_output_1m": 15.00
+    },
+    {
+      "name": "Claude 3.5 Haiku",
+      "provider": "Anthropic",
+      "api_id": "claude-3-5-haiku-20241022",
+      "reasoning_level": "Low",
+      "tasks": ["speed", "coding"],
+      "strengths": ["Costo operativo mínimo", "Latencia en milisegundos", "Ideal para autocompletado y análisis de logs rápidos"],
+      "limitations": ["Dificultad en lógica compleja multietapa", "Alucinaciones en dominios poco comunes"],
+      "cost_input_1m": 0.25,
+      "cost_output_1m": 1.25
+    },
+    {
+      "name": "o1-preview",
+      "provider": "OpenAI",
+      "api_id": "o1-preview",
+      "reasoning_level": "High",
+      "tasks": ["reasoning", "coding"],
+      "strengths": ["Generación de código infalible vía cadena de pensamiento oculta", "Resolución de algoritmos matemáticos", "Altamente preciso en debugging"],
+      "limitations": ["Muy lento (puede tomar minutos en responder)", "No admite system prompts dinámicos fácilmente", "Alto costo"],
+      "cost_input_1m": 15.00,
+      "cost_output_1m": 60.00
+    },
+    {
+      "name": "GPT-4o",
+      "provider": "OpenAI",
+      "api_id": "gpt-4o",
+      "reasoning_level": "Medium",
+      "tasks": ["coding", "speed"],
+      "strengths": ["Gran adopción y consistencia general", "Procesamiento multimodal (diagramas a código) rapidísimo", "Excelente en frameworks web"],
+      "limitations": ["Comete errores tontos en código muy extenso sin guía estructurada", "Razonamiento inferior a modelos o1"],
+      "cost_input_1m": 5.00,
+      "cost_output_1m": 15.00
+    },
+    {
+      "name": "GPT-4o mini",
+      "provider": "OpenAI",
+      "api_id": "gpt-4o-mini",
+      "reasoning_level": "Low",
+      "tasks": ["speed"],
+      "strengths": ["Ultra económico", "Velocidad sobresaliente para agentes intermedios", "Buen desempeño en parseo de JSON/Datos"],
+      "limitations": ["Capacidad nula para arquitecturas pesadas", "Tendencia a olvidar contexto inicial si es muy largo"],
+      "cost_input_1m": 0.15,
+      "cost_output_1m": 0.60
+    },
+    {
+      "name": "Gemini 3.1 Pro",
+      "provider": "Google",
+      "api_id": "gemini-3.1-pro",
+      "reasoning_level": "High",
+      "tasks": ["reasoning", "coding"],
+      "strengths": ["Ventana de contexto masiva inigualable", "Agente codificador experto en múltiples archivos a la vez", "Altamente integrado con el ecosistema de Google"],
+      "limitations": ["Curva de aprendizaje para exprimir el system prompt", "Costo asociado al consumo masivo de tokens en contexto largo"],
+      "cost_input_1m": 7.00,
+      "cost_output_1m": 21.00
+    },
+    {
+      "name": "Gemini 2.5 Pro",
+      "provider": "Google",
+      "api_id": "gemini-2.5-pro",
+      "reasoning_level": "Medium",
+      "tasks": ["coding", "reasoning"],
+      "strengths": ["Rápido y capaz para el 90% de tareas diarias", "Soporte nativo impecable para video y documentación técnica extensa", "Buen generador de tests"],
+      "limitations": ["Puede ser sobre-precavido con barreras de seguridad (safety settings)", "Razonamiento matemático estándar"],
+      "cost_input_1m": 3.50,
+      "cost_output_1m": 10.50
+    },
+    {
+      "name": "Gemini 2.0 Flash",
+      "provider": "Google",
+      "api_id": "gemini-2.0-flash",
+      "reasoning_level": "Low",
+      "tasks": ["speed", "coding"],
+      "strengths": ["Velocidad vertiginosa", "Excelente para clasificación de logs o PR reviews ligeras", "Precio de derribo"],
+      "limitations": ["Superficial en explicaciones de código", "Falla con abstracciones en lenguajes poco comunes"],
+      "cost_input_1m": 0.075,
+      "cost_output_1m": 0.30
+    }
+  ]
+}
