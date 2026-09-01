@@ -2,6 +2,7 @@
 import json
 import os
 import sys
+import time
 import urllib.request
 import urllib.error
 import datetime
@@ -177,7 +178,8 @@ El esquema exacto que DEBES cumplir es el siguiente:
                     
         except urllib.error.HTTPError as e:
             if e.code in [429, 500, 502, 503, 504]:
-                print(f"⚠️ Cuota excedida o error de servidor ({e.code}) en {model_name}, intentando respaldo...")
+                print(f"⚠️ Cuota excedida ({e.code}) en {model_name}. Esperando 15 segundos antes del respaldo...")
+                time.sleep(15)
                 continue
             else:
                 log_error_and_exit(f"Error HTTP al contactar Gemini API ({e.code}) en {model_name}: {e.reason}")
