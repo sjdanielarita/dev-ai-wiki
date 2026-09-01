@@ -133,9 +133,7 @@ El esquema exacto que DEBES cumplir es el siguiente:
   }}
 }}
 """
-    
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-3.7-flash:generateContent?key={api_key}"
-    
+
     payload = {
         "contents": [{
             "parts": [{"text": prompt}]
@@ -148,37 +146,48 @@ El esquema exacto que DEBES cumplir es el siguiente:
     }
     
     data = json.dumps(payload).encode('utf-8')
-    req = urllib.request.Request(url, data=data, headers={'Content-Type': 'application/json'}, method='POST')
+    MODELS_TO_TRY = ["gemini-3.7-flash", "gemini-3.1-pro-preview"]
     
-    try:
-        with urllib.request.urlopen(req) as response:
-            result = json.loads(response.read().decode('utf-8'))
-            
-            if 'candidates' in result and len(result['candidates']) > 0:
-                content_text = result['candidates'][0]['content']['parts'][0]['text']
+    for model_name in MODELS_TO_TRY:
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={api_key}"
+        req = urllib.request.Request(url, data=data, headers={'Content-Type': 'application/json'}, method='POST')
+        
+        try:
+            with urllib.request.urlopen(req) as response:
+                result = json.loads(response.read().decode('utf-8'))
                 
-                try:
-                    parsed_json = json.loads(content_text)
+                if 'candidates' in result and len(result['candidates']) > 0:
+                    content_text = result['candidates'][0]['content']['parts'][0]['text']
                     
-                    # Validación estricta con jsonschema
                     try:
-                        jsonschema.validate(instance=parsed_json, schema=SCHEMA)
-                    except jsonschema.ValidationError as ve:
-                        log_error_and_exit(f"Validación JSON Schema fallida. El modelo ignoró la estructura. Detalle: {ve.message}")
+                        parsed_json = json.loads(content_text)
+                        
+                        # Validación estricta con jsonschema
+                        try:
+                            jsonschema.validate(instance=parsed_json, schema=SCHEMA)
+                        except jsonschema.ValidationError as ve:
+                            log_error_and_exit(f"Validación JSON Schema fallida en {model_name}. El modelo ignoró la estructura. Detalle: {ve.message}")
+                        
+                        return parsed_json
+                        
+                    except json.JSONDecodeError as e:
+                        log_error_and_exit(f"Fallo al decodificar JSON devuelto por la IA ({model_name}). JSON corrupto: {str(e)}")
+                else:
+                    log_error_and_exit(f"Respuesta vacía o sin candidates en Gemini API ({model_name}).")
                     
-                    return parsed_json
-                    
-                except json.JSONDecodeError as e:
-                    log_error_and_exit(f"Fallo al decodificar JSON devuelto por la IA. JSON corrupto: {str(e)}")
+        except urllib.error.HTTPError as e:
+            if e.code in [429, 500, 502, 503, 504]:
+                print(f"⚠️ Cuota excedida o error de servidor ({e.code}) en {model_name}, intentando respaldo...")
+                continue
             else:
-                log_error_and_exit("Respuesta vacía o sin candidates en Gemini API.")
-                
-    except urllib.error.HTTPError as e:
-        log_error_and_exit(f"Error HTTP al contactar Gemini API ({e.code}): {e.reason}")
-    except urllib.error.URLError as e:
-        log_error_and_exit(f"Error de conectividad de red hacia la API de Google: {e.reason}")
-    except Exception as e:
-        log_error_and_exit(f"Excepción general inesperada en get_ai_data: {str(e)}")
+                log_error_and_exit(f"Error HTTP al contactar Gemini API ({e.code}) en {model_name}: {e.reason}")
+        except urllib.error.URLError as e:
+            log_error_and_exit(f"Error de conectividad de red hacia la API de Google: {e.reason}")
+        except Exception as e:
+            log_error_and_exit(f"Excepción general inesperada en get_ai_data: {str(e)}")
+            
+    # Si todos los modelos de la lista fallaron
+    log_error_and_exit("Todos los modelos de la lista de fallback fallaron por límite de cuota o error de servidor.")
 
 def main():
     print("Iniciando proceso de IA Autónoma con Búsqueda Web para actualización de Dev AI Wiki...")
@@ -188,7 +197,7 @@ def main():
         print("❌ Error: La variable de entorno 'AI_API_KEY' no está definida.")
         sys.exit(1)
         
-    print("Enviando directrices y habilitando Google Search Grounding a Gemini 3.7 Flash...")
+    print("Enviando directrices y habilitando Google Search Grounding a Gemini...")
     
     ai_response = get_ai_data(api_key)
     
