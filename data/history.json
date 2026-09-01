@@ -1,6 +1,11 @@
 {
   "history": [
     {
+      "date": "2026-09-01T21:42:07Z",
+      "version": "1.1.0",
+      "changes": "Actualización inteligente vía Gemini API: Descubrimiento y re-evaluación de los modelos de IA, fortalezas, y tarifas de uso."
+    },
+    {
       "date": "2026-09-01T12:00:00Z",
       "version": "1.0.0",
       "changes": "Lanzamiento inicial de Dev AI Wiki. Integración de la última generación de modelos (incluyendo Gemini 3.1 Pro, o1-preview y Claude 4)."

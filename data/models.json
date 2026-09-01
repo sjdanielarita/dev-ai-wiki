@@ -1,104 +1,219 @@
 {
-  "last_updated": "2026-09-01T12:00:00Z",
+  "last_updated": "2026-09-01T21:42:07Z",
   "models": [
     {
-      "name": "Claude 4 Opus",
+      "name": "Claude 3.5 Sonnet",
       "provider": "Anthropic",
-      "api_id": "claude-4-opus-20251020",
+      "api_id": "claude-3-5-sonnet-20240620",
       "reasoning_level": "High",
-      "tasks": ["reasoning", "coding"],
-      "strengths": ["Razonamiento lógico excepcional", "Arquitecturas de sistemas complejos", "Análisis de bases de código enteras"],
-      "limitations": ["Costo premium", "Mayor latencia en respuestas iniciales"],
-      "cost_input_1m": 15.00,
-      "cost_output_1m": 75.00
+      "tasks": [
+        "coding",
+        "reasoning",
+        "code generation",
+        "debugging",
+        "refactoring"
+      ],
+      "strengths": [
+        "Superior code generation and debugging",
+        "Enhanced reasoning over previous Sonnet",
+        "Cost-effective for complex tasks"
+      ],
+      "limitations": [
+        "Context window smaller than Opus",
+        "May still hallucinate in highly complex, niche scenarios"
+      ],
+      "cost_input_1m": 3.0,
+      "cost_output_1m": 15.0
     },
     {
-      "name": "Claude 4 Sonnet",
+      "name": "Claude 3 Opus",
       "provider": "Anthropic",
-      "api_id": "claude-4-sonnet-20250620",
+      "api_id": "claude-3-opus-20240229",
       "reasoning_level": "High",
-      "tasks": ["coding", "reasoning"],
-      "strengths": ["Gran balance de velocidad y calidad de código", "Excelente seguimiento de instrucciones", "Refactorizaciones seguras"],
-      "limitations": ["Menos profundo que Opus en problemas abstractos", "Límites de rate más estrictos"],
-      "cost_input_1m": 3.00,
-      "cost_output_1m": 15.00
+      "tasks": [
+        "coding",
+        "reasoning",
+        "complex problem solving",
+        "system design",
+        "code review"
+      ],
+      "strengths": [
+        "Highest reasoning capabilities",
+        "Large context window for extensive codebases",
+        "Strong performance on challenging coding benchmarks"
+      ],
+      "limitations": [
+        "Higher cost compared to Sonnet",
+        "Slower inference speed than Sonnet"
+      ],
+      "cost_input_1m": 15.0,
+      "cost_output_1m": 75.0
     },
     {
-      "name": "Claude 3.5 Haiku",
+      "name": "Claude 3 Haiku",
       "provider": "Anthropic",
-      "api_id": "claude-3-5-haiku-20241022",
-      "reasoning_level": "Low",
-      "tasks": ["speed", "coding"],
-      "strengths": ["Costo operativo mínimo", "Latencia en milisegundos", "Ideal para autocompletado y análisis de logs rápidos"],
-      "limitations": ["Dificultad en lógica compleja multietapa", "Alucinaciones en dominios poco comunes"],
+      "api_id": "claude-3-haiku-20240307",
+      "reasoning_level": "Medium",
+      "tasks": [
+        "coding",
+        "speed",
+        "simple script generation",
+        "data extraction",
+        "quick responses"
+      ],
+      "strengths": [
+        "Extremely fast inference",
+        "Very low cost",
+        "Good for quick, straightforward coding tasks"
+      ],
+      "limitations": [
+        "Lower reasoning ability than Sonnet/Opus",
+        "Less suitable for highly complex or abstract problems"
+      ],
       "cost_input_1m": 0.25,
       "cost_output_1m": 1.25
-    },
-    {
-      "name": "o1-preview",
-      "provider": "OpenAI",
-      "api_id": "o1-preview",
-      "reasoning_level": "High",
-      "tasks": ["reasoning", "coding"],
-      "strengths": ["Generación de código infalible vía cadena de pensamiento oculta", "Resolución de algoritmos matemáticos", "Altamente preciso en debugging"],
-      "limitations": ["Muy lento (puede tomar minutos en responder)", "No admite system prompts dinámicos fácilmente", "Alto costo"],
-      "cost_input_1m": 15.00,
-      "cost_output_1m": 60.00
     },
     {
       "name": "GPT-4o",
       "provider": "OpenAI",
       "api_id": "gpt-4o",
-      "reasoning_level": "Medium",
-      "tasks": ["coding", "speed"],
-      "strengths": ["Gran adopción y consistencia general", "Procesamiento multimodal (diagramas a código) rapidísimo", "Excelente en frameworks web"],
-      "limitations": ["Comete errores tontos en código muy extenso sin guía estructurada", "Razonamiento inferior a modelos o1"],
-      "cost_input_1m": 5.00,
-      "cost_output_1m": 15.00
-    },
-    {
-      "name": "GPT-4o mini",
-      "provider": "OpenAI",
-      "api_id": "gpt-4o-mini",
-      "reasoning_level": "Low",
-      "tasks": ["speed"],
-      "strengths": ["Ultra económico", "Velocidad sobresaliente para agentes intermedios", "Buen desempeño en parseo de JSON/Datos"],
-      "limitations": ["Capacidad nula para arquitecturas pesadas", "Tendencia a olvidar contexto inicial si es muy largo"],
-      "cost_input_1m": 0.15,
-      "cost_output_1m": 0.60
-    },
-    {
-      "name": "Gemini 3.1 Pro",
-      "provider": "Google",
-      "api_id": "gemini-3.1-pro",
       "reasoning_level": "High",
-      "tasks": ["reasoning", "coding"],
-      "strengths": ["Ventana de contexto masiva inigualable", "Agente codificador experto en múltiples archivos a la vez", "Altamente integrado con el ecosistema de Google"],
-      "limitations": ["Curva de aprendizaje para exprimir el system prompt", "Costo asociado al consumo masivo de tokens en contexto largo"],
-      "cost_input_1m": 7.00,
-      "cost_output_1m": 21.00
+      "tasks": [
+        "coding",
+        "reasoning",
+        "multimodal input/output",
+        "code generation",
+        "debugging"
+      ],
+      "strengths": [
+        "Excellent reasoning across modalities",
+        "High performance on coding tasks",
+        "Faster and cheaper than GPT-4 Turbo"
+      ],
+      "limitations": [
+        "Context window smaller than some competitors",
+        "Can still exhibit 'laziness' in long outputs"
+      ],
+      "cost_input_1m": 5.0,
+      "cost_output_1m": 15.0
     },
     {
-      "name": "Gemini 2.5 Pro",
-      "provider": "Google",
-      "api_id": "gemini-2.5-pro",
+      "name": "GPT-4 Turbo",
+      "provider": "OpenAI",
+      "api_id": "gpt-4-turbo",
+      "reasoning_level": "High",
+      "tasks": [
+        "coding",
+        "reasoning",
+        "code review",
+        "system design",
+        "vision-based code analysis"
+      ],
+      "strengths": [
+        "Strong general reasoning and coding ability",
+        "Large context window",
+        "Multimodal capabilities (vision)"
+      ],
+      "limitations": [
+        "Higher cost than GPT-4o",
+        "Slightly slower inference than GPT-4o"
+      ],
+      "cost_input_1m": 10.0,
+      "cost_output_1m": 30.0
+    },
+    {
+      "name": "GPT-3.5 Turbo",
+      "provider": "OpenAI",
+      "api_id": "gpt-3.5-turbo",
       "reasoning_level": "Medium",
-      "tasks": ["coding", "reasoning"],
-      "strengths": ["Rápido y capaz para el 90% de tareas diarias", "Soporte nativo impecable para video y documentación técnica extensa", "Buen generador de tests"],
-      "limitations": ["Puede ser sobre-precavido con barreras de seguridad (safety settings)", "Razonamiento matemático estándar"],
-      "cost_input_1m": 3.50,
-      "cost_output_1m": 10.50
+      "tasks": [
+        "coding",
+        "speed",
+        "script generation",
+        "data parsing",
+        "quick prototyping"
+      ],
+      "strengths": [
+        "Very low cost",
+        "High speed for simple tasks",
+        "Good for boilerplate code and quick fixes"
+      ],
+      "limitations": [
+        "Lower reasoning ability than GPT-4 models",
+        "Prone to more errors in complex coding scenarios"
+      ],
+      "cost_input_1m": 0.5,
+      "cost_output_1m": 1.5
     },
     {
-      "name": "Gemini 2.0 Flash",
+      "name": "Gemini 1.5 Pro",
       "provider": "Google",
-      "api_id": "gemini-2.0-flash",
-      "reasoning_level": "Low",
-      "tasks": ["speed", "coding"],
-      "strengths": ["Velocidad vertiginosa", "Excelente para clasificación de logs o PR reviews ligeras", "Precio de derribo"],
-      "limitations": ["Superficial en explicaciones de código", "Falla con abstracciones en lenguajes poco comunes"],
-      "cost_input_1m": 0.075,
-      "cost_output_1m": 0.30
+      "api_id": "gemini-1.5-pro-latest",
+      "reasoning_level": "High",
+      "tasks": [
+        "coding",
+        "reasoning",
+        "large codebase analysis",
+        "multimodal input",
+        "long context understanding"
+      ],
+      "strengths": [
+        "Massive context window (up to 1M tokens)",
+        "Excellent for analyzing large codebases and documentation",
+        "Strong multimodal capabilities"
+      ],
+      "limitations": [
+        "Higher latency for very large contexts",
+        "Cost scales significantly with 1M token context usage"
+      ],
+      "cost_input_1m": 35.0,
+      "cost_output_1m": 105.0
+    },
+    {
+      "name": "Gemini 1.0 Pro",
+      "provider": "Google",
+      "api_id": "gemini-pro",
+      "reasoning_level": "Medium",
+      "tasks": [
+        "coding",
+        "reasoning",
+        "general development tasks",
+        "scripting"
+      ],
+      "strengths": [
+        "Good general-purpose performance",
+        "Cost-effective for many tasks",
+        "Reliable for standard coding challenges"
+      ],
+      "limitations": [
+        "Smaller context window than 1.5 Pro",
+        "Less advanced reasoning than 1.5 Pro"
+      ],
+      "cost_input_1m": 0.5,
+      "cost_output_1m": 1.5
+    },
+    {
+      "name": "CodeGemma",
+      "provider": "Google",
+      "api_id": "codegemma-7b-it",
+      "reasoning_level": "Medium",
+      "tasks": [
+        "coding",
+        "code generation",
+        "code completion",
+        "fill-in-the-middle"
+      ],
+      "strengths": [
+        "Highly specialized for code tasks",
+        "Efficient for code generation and completion",
+        "Open-source weights available for local deployment/fine-tuning"
+      ],
+      "limitations": [
+        "Lower general reasoning compared to larger models",
+        "Primarily focused on code, less on broader problem-solving"
+      ],
+      "cost_input_1m": 0.2,
+      "cost_output_1m": 0.2
     }
   ]
 }
