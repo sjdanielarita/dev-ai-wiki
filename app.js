@@ -132,6 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let sourcesHtml = '';
             if (entry.sources && entry.sources.length) {
                 sourcesHtml = '<div style="margin-top: 10px;"><strong>Fuentes verificadas:</strong><br>';
+                const seenDomains = new Set();
                 entry.sources.forEach(url => {
                     try {
                         let cleanUrl = url.trim();
@@ -139,9 +140,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (!cleanUrl.startsWith('http')) cleanUrl = 'https://' + cleanUrl;
                         
                         const urlObj = new URL(cleanUrl);
-                        const domain = urlObj.hostname.replace('www.', '');
+                        let domain = urlObj.hostname.replace('www.', '');
                         
-                        sourcesHtml += `<a href="${cleanUrl}" target="_blank" class="source-badge" onclick="event.stopPropagation()">${domain}</a>`;
+                        if (!seenDomains.has(domain)) {
+                            seenDomains.add(domain);
+                            let displayName = domain === "vertexaisearch.cloud.google.com" ? "Google Search Grounding" : domain;
+                            sourcesHtml += `<a href="${cleanUrl}" target="_blank" class="source-badge" onclick="event.stopPropagation()">${displayName}</a>`;
+                        }
                     } catch (e) {
                         // Fallback por si la IA generó texto en lugar de URL limpia
                         sourcesHtml += `<span class="source-badge" style="background-color: transparent; border-style: dashed;">${url.substring(0, 20)}...</span>`;
