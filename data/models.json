@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-01T22:06:49Z",
+  "last_updated": "2026-09-02T14:48:56Z",
   "models": [
     {
       "name": "Claude Fable 5.1",
@@ -10,17 +10,19 @@
         "coding",
         "reasoning",
         "agentic workflows",
-        "knowledge work"
+        "code review",
+        "vision"
       ],
       "strengths": [
-        "Más avanzado para codificación y trabajo de conocimiento",
-        "Rendimiento dramáticamente mejor que Fable 5 con costos más bajos",
-        "Capaz de corregir las causas raíz de los problemas de software",
-        "Cumple con la Ley de IA de la UE, incluye marcas de agua"
+        "Complex coding projects",
+        "Multi-day autonomous sessions",
+        "Code review",
+        "High-fidelity design implementation",
+        "Vision-based output checking",
+        "Complex multi-stage knowledge work"
       ],
       "limitations": [
-        "Precio premium en comparación con otros modelos",
-        "Mythos 5.1 (el mismo modelo sin salvaguardias) solo disponible para socios verificados"
+        "Highest cost among Claude models"
       ],
       "cost_input_1m": 10.0,
       "cost_output_1m": 50.0
@@ -33,18 +35,18 @@
       "tasks": [
         "coding",
         "reasoning",
-        "software engineering",
-        "problem-solving"
+        "agentic workflows",
+        "bug fixing"
       ],
       "strengths": [
-        "Modelo reflexivo y proactivo, cercano a la inteligencia de Fable 5 a mitad de precio",
-        "Destaca en tareas de ingeniería de software",
-        "Supera a otros modelos en Frontier-Bench v0.1 y CursorBench 3.2",
-        "Supera a todos los demás modelos en OSWorld 2.0 a cualquier costo dado"
+        "Complex agentic coding",
+        "Enterprise workflows",
+        "Deep codebase understanding",
+        "Sustained performance across complex tasks",
+        "Feature development and bug-fixing"
       ],
       "limitations": [
-        "Puede requerir ajuste del parámetro 'effort' para optimizar costos",
-        "No incluido en el nivel gratuito de Claude"
+        "Higher cost than Sonnet/Haiku"
       ],
       "cost_input_1m": 5.0,
       "cost_output_1m": 25.0
@@ -56,18 +58,21 @@
       "reasoning_level": "Medium",
       "tasks": [
         "coding",
-        "production workloads",
+        "reasoning",
         "speed",
-        "cost-efficiency"
+        "code review",
+        "summarization",
+        "extraction"
       ],
       "strengths": [
-        "Nivel de producción equilibrado",
-        "Fuerte rendimiento de nivel medio a menor costo",
-        "Buena opción para cargas de trabajo de producción"
+        "Balanced performance (speed and intelligence)",
+        "Cost-effective for everyday development",
+        "Near-frontier coding quality",
+        "1M token context window",
+        "Good for code reviews, summaries, extraction, and tool use"
       ],
       "limitations": [
-        "Menos capaz que Opus 5 o Fable 5.1 para tareas de razonamiento complejas",
-        "Contexto de 1M de tokens disponible, pero puede no ser el más eficiente para todos los casos"
+        "Less capable than Opus/Fable for extremely complex, frontier tasks"
       ],
       "cost_input_1m": 2.0,
       "cost_output_1m": 10.0
@@ -80,22 +85,22 @@
       "tasks": [
         "coding",
         "reasoning",
-        "research",
-        "cybersecurity",
-        "design"
+        "complex problem-solving",
+        "vision",
+        "tool use"
       ],
       "strengths": [
-        "Modelo insignia de razonamiento para trabajo complejo en codificación",
-        "Lidera los benchmarks de codificación de OpenAI, incluyendo Terminal-Bench 2.1 y Artificial Analysis Coding Agent Index",
-        "Mayor inteligencia por cada token y mayor rendimiento por dólar",
-        "Ventana de contexto de 1.05M de tokens"
+        "Flagship model for complex reasoning and coding",
+        "Broad tool support",
+        "Strong coding capabilities",
+        "Vision and computer-use capabilities",
+        "Enterprise applications"
       ],
       "limitations": [
-        "Precio más alto dentro de la familia GPT-5.6",
-        "No disponible para usuarios gratuitos o con planes básicos de ChatGPT"
+        "Highest cost in its family"
       ],
-      "cost_input_1m": 5.0,
-      "cost_output_1m": 30.0
+      "cost_input_1m": 0.2,
+      "cost_output_1m": 1.2
     },
     {
       "name": "GPT-5.6 Terra",
@@ -104,21 +109,18 @@
       "reasoning_level": "Medium",
       "tasks": [
         "coding",
-        "everyday production",
-        "efficiency"
+        "reasoning",
+        "speed"
       ],
       "strengths": [
-        "Modelo equilibrado para el uso diario",
-        "Eficiencia que supera su precio",
-        "Parte de la familia GPT-5.6, con mejoras en eficiencia",
-        "Ventana de contexto de 1.05M de tokens"
+        "Balances intelligence and cost for general workloads"
       ],
       "limitations": [
-        "Menos capaz que Sol para las tareas más complejas",
-        "Puede no ser la opción más económica para tareas de alto volumen"
+        "Less capable than Sol for frontier tasks",
+        "Specific API pricing not explicitly detailed in official OpenAI API documentation"
       ],
-      "cost_input_1m": 2.0,
-      "cost_output_1m": 12.0
+      "cost_input_1m": 0.0,
+      "cost_output_1m": 0.0
     },
     {
       "name": "GPT-5.6 Luna",
@@ -127,70 +129,45 @@
       "reasoning_level": "Low",
       "tasks": [
         "coding",
-        "high-volume",
-        "latency-sensitive tasks",
-        "cost-efficiency"
+        "speed",
+        "high-volume"
       ],
       "strengths": [
-        "Nivel más rentable de la familia GPT-5.6",
-        "Ideal para tareas de alto volumen o sensibles a la latencia",
-        "Precios significativamente reducidos en comparación con otros modelos",
-        "Ventana de contexto de 1.05M de tokens"
+        "Cost-efficient for high-volume workloads"
       ],
       "limitations": [
-        "Menor capacidad de razonamiento en comparación con Sol y Terra",
-        "Puede no ser adecuado para problemas de codificación extremadamente complejos"
+        "Lower reasoning capabilities compared to Sol/Terra",
+        "Specific API pricing not explicitly detailed in official OpenAI API documentation"
       ],
-      "cost_input_1m": 0.2,
-      "cost_output_1m": 1.2
+      "cost_input_1m": 0.0,
+      "cost_output_1m": 0.0
     },
     {
       "name": "Gemini 3.7 Flash",
       "provider": "Google",
       "api_id": "gemini-3.7-flash",
-      "reasoning_level": "High",
-      "tasks": [
-        "coding",
-        "agentic workflows",
-        "software engineering",
-        "web development"
-      ],
-      "strengths": [
-        "Modelo 'caballo de batalla' más inteligente para codificación y agentes",
-        "Mejoras sustanciales en ingeniería de software, desarrollo web y flujos de trabajo de agentes",
-        "Mayor precisión de código en el primer intento y mejor rendimiento en código listo para producción",
-        "Precios introductorios competitivos"
-      ],
-      "limitations": [
-        "El precio introductorio se duplica el 1 de enero de 2027",
-        "El acceso al consumidor a través de la aplicación Gemini requiere una suscripción Pro o Ultra"
-      ],
-      "cost_input_1m": 0.75,
-      "cost_output_1m": 3.75
-    },
-    {
-      "name": "Gemini 3.6 Flash",
-      "provider": "Google",
-      "api_id": "gemini-3.6-flash",
       "reasoning_level": "Medium",
       "tasks": [
         "coding",
-        "agentic planning",
-        "token efficiency",
-        "speed"
+        "agentic workflows",
+        "web development",
+        "debugging",
+        "issue resolution",
+        "UI generation"
       ],
       "strengths": [
-        "Eficiencia de tokens mejorada y capacidades de planificación de código/agentes",
-        "Modelo enfocado en la velocidad",
-        "Precios introductorios competitivos, igualados a 3.7 Flash",
-        "Modelo predeterminado gratuito en la aplicación Gemini y en el modo AI de Google Search"
+        "Most intelligent Flash model for coding and agents",
+        "Substantial improvements in software engineering and web development",
+        "High first-pass code accuracy",
+        "Production-ready code generation",
+        "Improved reasoning and accuracy for knowledge-dense fields",
+        "Introductory cost-effective pricing"
       ],
       "limitations": [
-        "El precio introductorio se duplica el 1 de enero de 2027",
-        "Superado por 3.7 Flash en benchmarks de codificación y agentes"
+        "Newer model, long-term stability and widespread adoption might be less proven"
       ],
       "cost_input_1m": 0.75,
-      "cost_output_1m": 3.75
+      "cost_output_1m": 4.5
     },
     {
       "name": "Gemini 3.1 Pro",
@@ -199,22 +176,39 @@
       "reasoning_level": "High",
       "tasks": [
         "reasoning",
-        "multimodal",
-        "large context",
-        "complex problem-solving"
+        "coding",
+        "long-context analysis"
       ],
       "strengths": [
-        "Ofrenda más capaz de Google",
-        "Capacidades multimodales superiores y ventana de contexto de 2 millones de tokens",
-        "Excelente para tareas de razonamiento complejas en grandes conjuntos de datos",
-        "Posicionado competitivamente contra GPT-4o y Claude 3.5 Sonnet"
+        "Frontier reasoning capabilities",
+        "Complex problem-solving",
+        "Large context window (up to 1M tokens)"
       ],
       "limitations": [
-        "Tarifas más altas para contextos superiores a 200K tokens",
-        "No tan optimizado para velocidad pura como los modelos Flash"
+        "Higher cost",
+        "Pricing cliff for prompts exceeding 200K tokens (input rate doubles, output increases)"
       ],
       "cost_input_1m": 2.0,
       "cost_output_1m": 12.0
+    },
+    {
+      "name": "Gemini 3.5 Flash-Lite",
+      "provider": "Google",
+      "api_id": "gemini-3.5-flash-lite",
+      "reasoning_level": "Low",
+      "tasks": [
+        "speed",
+        "high-volume"
+      ],
+      "strengths": [
+        "Very cost-efficient for high-volume tasks",
+        "Good for lightweight, frequent calls"
+      ],
+      "limitations": [
+        "Lower reasoning capabilities for complex tasks"
+      ],
+      "cost_input_1m": 0.3,
+      "cost_output_1m": 2.5
     }
   ]
 }
