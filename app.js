@@ -6,28 +6,86 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch('data/models.json').then(res => res.json()),
         fetch('data/history.json').then(res => res.json())
     ]).then(([modelsData, historyData]) => {
-        allModels = modelsData.models;
+        allModels = Array.isArray(modelsData.models) ? modelsData.models : [];
+        populateTaskFilter(allModels);
+        populateProviderFilter(allModels);
         renderModels(allModels);
         renderTable(allModels);
         renderHistory(historyData.history);
     }).catch(error => console.error("Error al cargar los datos:", error));
 
     const taskFilter = document.getElementById('task-filter');
+    const providerFilter = document.getElementById('provider-filter');
     const reasoningFilter = document.getElementById('reasoning-filter');
+
+    function normalizeTask(task) {
+        return String(task ?? '')
+            .normalize('NFKC')
+            .trim()
+            .replace(/\s+/g, ' ')
+            .toLocaleLowerCase('es');
+    }
+
+    function populateTaskFilter(models) {
+        const uniqueTasks = new Map();
+
+        models.forEach(model => {
+            const tasks = Array.isArray(model.tasks) ? model.tasks : [];
+
+            tasks.forEach(task => {
+                const label = String(task).trim().replace(/\s+/g, ' ');
+                const value = normalizeTask(task);
+
+                if (value && !uniqueTasks.has(value)) {
+                    uniqueTasks.set(value, label);
+                }
+            });
+        });
+
+        taskFilter.innerHTML = '<option value="all">Todas</option>';
+
+        [...uniqueTasks.entries()]
+            .sort(([, labelA], [, labelB]) =>
+                labelA.localeCompare(labelB, 'es', { sensitivity: 'base' })
+            )
+            .forEach(([value, label]) => {
+                const option = document.createElement('option');
+                option.value = value;
+                option.textContent = label;
+                taskFilter.appendChild(option);
+            });
+    }
+
+    function populateProviderFilter(models) {
+        const providers = [...new Set(models.map(model => model.provider).filter(Boolean))]
+            .sort((providerA, providerB) => providerA.localeCompare(providerB, 'es'));
+
+        providerFilter.innerHTML = '<option value="all">Todos</option>';
+
+        providers.forEach(provider => {
+            const option = document.createElement('option');
+            option.value = provider;
+            option.textContent = provider;
+            providerFilter.appendChild(option);
+        });
+    }
 
     // Lógica de interactividad y transición fluida para cuadrícula
     function applyFilters() {
-        const task = taskFilter.value;
+        const task = normalizeTask(taskFilter.value);
+        const provider = providerFilter.value;
         const reasoning = reasoningFilter.value;
 
         document.querySelectorAll('.card').forEach(card => {
-            const cardTasks = card.dataset.task.split(',');
+            const cardTasks = JSON.parse(card.dataset.tasks || '[]');
+            const cardProvider = card.dataset.provider;
             const cardReasoning = card.dataset.reasoning;
             
             const matchTask = task === 'all' || cardTasks.includes(task);
+            const matchProvider = provider === 'all' || cardProvider === provider;
             const matchReasoning = reasoning === 'all' || cardReasoning === reasoning;
             
-            if (matchTask && matchReasoning) {
+            if (matchTask && matchProvider && matchReasoning) {
                 card.classList.remove('hidden-card');
                 // timeout de un milisegundo para forzar reflow y activar la animación de opacidad
                 setTimeout(() => {
@@ -45,9 +103,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 300);
             }
         });
+
+        const filteredModels = allModels.filter(model => {
+            const modelTasks = (Array.isArray(model.tasks) ? model.tasks : [])
+                .map(normalizeTask)
+                .filter(Boolean);
+
+            const matchTask = task === 'all' || modelTasks.includes(task);
+            const matchProvider = provider === 'all' || model.provider === provider;
+            const matchReasoning = reasoning === 'all' || model.reasoning_level === reasoning;
+
+            return matchTask && matchProvider && matchReasoning;
+        });
+
+        renderTable(filteredModels);
     }
 
     taskFilter.addEventListener('change', applyFilters);
+    providerFilter.addEventListener('change', applyFilters);
     reasoningFilter.addEventListener('change', applyFilters);
 
     function renderModels(models) {
@@ -63,7 +136,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (providers[model.provider]) {
                 const card = document.createElement('div');
                 card.className = 'card';
-                card.dataset.task = model.tasks.join(',');
+                const normalizedTasks = (Array.isArray(model.tasks) ? model.tasks : [])
+                    .map(normalizeTask)
+                    .filter(Boolean);
+
+                card.dataset.tasks = JSON.stringify(normalizedTasks);
+                card.dataset.provider = model.provider;
                 card.dataset.reasoning = model.reasoning_level;
                 
                 card.innerHTML = `
