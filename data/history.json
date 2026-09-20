@@ -1,6 +1,28 @@
 {
   "history": [
     {
+      "date": "2026-09-20T03:59:33Z",
+      "provider": "IA Autonomous Agent",
+      "model_added": "Claude Fable 5.1, Claude Opus 5, Claude Sonnet 5, GPT-5.6 Sol, GPT-5.6 Terra, GPT-5.6 Luna, Gemini 3.1 Pro, Gemini 1.5 Pro, Gemini 1.5 Flash",
+      "change": "Análisis y actualización del catálogo de modelos de IA para desarrollo de software, incluyendo modelos de nueva generación y precios vigentes a septiembre de 2026.",
+      "reason": "Se han identificado nuevos modelos de frontera y actualizaciones de precios en Anthropic y OpenAI, con la serie GPT-5.6 de OpenAI como reemplazo de modelos anteriores. Para Google, se han seleccionado los modelos Gemini 3.1 Pro, 1.5 Pro y 1.5 Flash como los más relevantes y activos para API. Los precios de salida para los modelos de Google se han inferido con un multiplicador de 5x el costo de entrada debido a la ausencia de datos explícitos en las fuentes oficiales consultadas para 2026, lo cual se documenta como una limitación. Se han excluido modelos clasificados como 'deprecated' o 'superseded' según la documentación oficial.",
+      "sources": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH9HqF1pZPy_YhoQ5zwJ0eVyBnN8frQPhdpXyrNGyZs47dPi4M7hKugp3emYlOzN9jrP0YRMmlWCjrhmQteOlkUFhcpTfKxQGH-oJpgBxid7ZPW0AdzRdtbIAAktRmfQmoIkOI=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFOKTXuFSPU7NGI30WZfSUJX_kl3RlRT-Lz4uUK4XHVFtQ9bKI-Iw-rg4UzCgm_Gq3-X0F0bvunqGg5L9hPqwZvKzh_HmHUHA42o0p-JwLnNuM_LqLquGAIrtyV70SpzQpXhViQ3MZYAWw=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG9BOvYixVoYTC-Vz3_aFC7vVYOEJ1oXK__m2OuTr3jOVIDk3KMhlVDiXWaoJwPKTHRCEiXLueK9I2glJdHh7XKzzY-TRsM70ohuhhBEFQUDPxCoUCcrnPMVqEE7OIkEU5--cr-pmI=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGwQTeopQnAsUELRucdljzJUi_oBVEbFjgR8YoaECC07kfmzv20hhrSB9_DpScFHxlvsojGH1pq62ohXtzgtHJd2trz-l_ci7HrTwohbLnkZM_y4OviK77D7Zd8P1MprVskAnjQc1Vr0COy8w==",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEt57DGOg2hTpdIDTJ3ZsD6-VJzkZVchwgREK_fMi-_zWCPzdfXlB8kWXp4gKbruM-ty-cGVrKFYHU8e-blQsiYUnKSXFGmvyBLQBN22PKM_i_aSgM9ZS_c67qGlvULrdFXvf_NU7rugXDBWfWA33N35O3ZLBYnXIb1wI5x1GmTJ6_p-Zrm8xi9bVNEsDutae6r7hq0abnl9zI=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHTawHCSJDvDhlcNC6usaWG2YqNdIdy1M6A-eiQRUeIK3d8469xSWegGzkDQKJjB4YM8JK1j1Rs_U_PNvmKDwx0IfX6Ai2A_FjbwNyvjK39vFc_7O88dd60tDGYhXlPXGwOK9PGjbW8VJL2jwszxIEiRlHt38-OjqG3cu6a_SA0Km9pMuov",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF89a5o6UbkUh_ILBI47Q1MUJT9c-7Syrf8-WaRJ8HvtLcWRnDGWQN2e-NKwEUNO5uLFhqz-d6Ouhf4M3TDwj-dWHNKGAmbXpWg7kL6jCMqVoMWL0EFWa61onPPyhWSYAGcFgv0O6b6RBzzcb3HVj9x_y8lNexMSHDCDMfZZVH0HCbIDAxlnq__GLk=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHIhNd8DYPbrY9SpANNgly8ijExZakRmIfBg1Rk2pFXFzwzmQkhF3Fvh65YsTt73fpBgVy_g085TsvLeZzWxVE0m8PV_T1CzMGDXEw7rROIyhUBb-QZU5S6yfNi-SymHh4lyH4dtr-7Me2KzfzRhouPhaBjnA=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQErRg3kFWiQJAMcDxGUx6BxhJMR-sFMz6RwZUA_U4aaocU_iU_jc78lFjuRA6APPoqKK5ViFHQjklyToPQXFlf0qPx5UU2Argw1HLXNIg6m4GMq-DmKLg0YlSQOwydAHgvsOhYfRWyCw1EMtyFCdQh-Hg=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEDAuJTVEWexpMCBL0bAH2ZimYMWnnDIagNfbazPCdAfcHJdLi0A3rkh1fHl-ULN-PROKpcC5YJSKTg1p_LvZo2COIpcDi6EHDn1KGIeLvX7iRlQQxiQtzvBhZqVj4JHXr8OxtxAmmOwCCcdkhcos43eUKH",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFwVu3Jq70NBKI-sm4SGdml-R9SZawgWxoXOUjMEBcqw-V8qY-DPP1bXb35abreX6nArZtFKCmlqJXoS9Et7O38rGZ0ERU2c-LFQs9gzJkwFcdPIpC_80D7ZKmmtiD-MS6nkysE_TK9fZHD",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFj6xuC1WkGNHuhHeeho-mh95CFYiS-NTcFtPrJujRISu02TUfKPDRWsVWYQ-J6i1CFrv629mcW5Sj9fzSoqc6Da2hCXvnAyQDUhSli9zluiqQaH_Ih5cwWLE5ApFFYcHn-JR-EAT2DHOykAVfhKuQTzK5etgFdMmKft-ZCQ-pgnzj2vg2dRrXMSul956S8tVbpLHZ0XIo_9w=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFJAg4h9vV8ktzQBUtb3-gk2896-bolDgtv674Fjg448fQgFtuXn_MlQ7zXNn8ifC6Y9C4z-gImwwbmKoQKFinx4zN-GjlcRUSWC0uFNBkkMtZL-xLnj2l87qXPGYLba_03WJ0RVIQkVKidyChe58bS5SCKyWNNtV-HuuR51l-7w9Z7z3PJEiMO0ZtVbCVb_UggoKNRID7AOYQHd1k2N4C83JgKic51Tff0z9M="
+      ]
+    },
+    {
       "date": "2026-09-13T03:47:47Z",
       "provider": "IA Autonomous Agent",
       "model_added": "Claude Fable 5.1, Claude Sonnet 5, Claude Haiku 4.5, GPT-6 Astra, GPT-5.6 Terra, GPT-5.6 Luna, Gemini 2.5 Pro, Gemini 2.5 Flash",
